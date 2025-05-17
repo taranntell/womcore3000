@@ -1,0 +1,1245 @@
+/* Wombcore 3000™ - Retro-futuristic Baby Sound Machine Styles */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Varela+Round&display=swap');
+
+:root {
+  --primary-color: #6effff;
+  --primary-glow: 0 0 10px rgba(110, 255, 255, 0.7);
+  --secondary-color: #ff6ec7;
+  --secondary-glow: 0 0 8px rgba(255, 110, 199, 0.6);
+  --accent-color: #9e71ff;
+  --accent-glow: 0 0 8px rgba(158, 113, 255, 0.6);
+  --chrome: linear-gradient(145deg, #d5d5d5 0%, #f2f2f2 47%, #bababa 100%);
+  --space-bg: #171757;
+  --space-bg-gradient: linear-gradient(160deg, #171757 0%, #3b296b 60%, #5e3b8b 100%);
+  --tile-bg: rgba(255, 255, 255, 0.15);
+  --tile-border: rgba(255, 255, 255, 0.3);
+  --text-color: #ffffff;
+  --crt-glow: 0 0 5px rgba(110, 255, 255, 0.7);
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  --border-radius: 18px;
+  --control-chrome: linear-gradient(145deg, #ececec 0%, #f0f0f0 47%, #d8d8d8 100%);
+  --plush-pink: #ffb6c1;
+  --plush-blue: #add8e6;
+  --plush-yellow: #ffdb58;
+  --plush-green: #98fb98;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 8px rgba(110, 255, 255, 0.5); }
+  50% { box-shadow: 0 0 15px rgba(110, 255, 255, 0.9); }
+  100% { box-shadow: 0 0 8px rgba(110, 255, 255, 0.5); }
+}
+
+@keyframes rgb-flicker {
+  0% { text-shadow: 0 0 7px rgba(110, 255, 255, 0.8); }
+  20% { text-shadow: 0 0 7px rgba(255, 110, 199, 0.8); }
+  40% { text-shadow: 0 0 7px rgba(158, 113, 255, 0.8); }
+  60% { text-shadow: 0 0 7px rgba(255, 243, 110, 0.8); }
+  80% { text-shadow: 0 0 7px rgba(110, 255, 157, 0.8); }
+  100% { text-shadow: 0 0 7px rgba(110, 255, 255, 0.8); }
+}
+
+@keyframes dreamscape-wave {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+body {
+  font-family: 'Varela Round', 'Arial Rounded MT Bold', sans-serif;
+  background: var(--space-bg-gradient);
+  background-size: 400% 400%;
+  animation: dreamscape-wave 15s ease infinite;
+  color: var(--text-color);
+  line-height: 1.6;
+  padding-bottom: 2rem;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239e9ee3' fill-opacity='0.08'%3E%3Ccircle cx='30' cy='30' r='18'/%3E%3Ccircle cx='90' cy='30' r='12'/%3E%3Ccircle cx='30' cy='90' r='12'/%3E%3Ccircle cx='90' cy='90' r='18'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  opacity: 0.6;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  background: rgba(23, 23, 87, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(110, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.app-title {
+  font-family: 'Audiowide', cursive;
+  color: var(--primary-color);
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: var(--crt-glow);
+  animation: rgb-flicker 10s infinite;
+  margin-bottom: 0;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.app-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  animation: pulse-glow 3s infinite;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--plush-pink);
+  position: relative;
+  display: inline-block;
+}
+
+.lead::before, .lead::after {
+  content: "⦿";
+  display: inline-block;
+  margin: 0 10px;
+  color: var(--primary-color);
+  animation: pulse-glow 2s infinite alternate;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+/* Sound Tiles */
+.sound-tiles {
+  perspective: 1000px;
+}
+
+.sound-tile {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--border-radius);
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 230px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  transform-style: preserve-3d;
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.sound-tile::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(148, 255, 176, 0.15), transparent 20%),
+    radial-gradient(circle at 70% 60%, rgba(110, 255, 255, 0.15), transparent 25%),
+    radial-gradient(circle at 40% 80%, rgba(158, 113, 255, 0.15), transparent 20%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sound-tile:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  border-color: var(--primary-color);
+}
+
+/* Unique color variations for each sound type */
+.sound-tile[data-sound="ocean"] {
+  background: linear-gradient(135deg, rgba(0, 140, 255, 0.1) 0%, rgba(0, 200, 255, 0.1) 100%);
+  border: 2px solid rgba(0, 180, 255, 0.5);
+}
+
+.sound-tile[data-sound="forest"] {
+  background: linear-gradient(135deg, rgba(0, 160, 70, 0.1) 0%, rgba(100, 200, 100, 0.1) 100%);
+  border: 2px solid rgba(80, 180, 80, 0.5);
+}
+
+.sound-tile[data-sound="snow"] {
+  background: linear-gradient(135deg, rgba(200, 220, 255, 0.1) 0%, rgba(230, 240, 255, 0.1) 100%);
+  border: 2px solid rgba(210, 230, 255, 0.5);
+}
+
+.sound-tile[data-sound="lullaby"] {
+  background: linear-gradient(135deg, rgba(180, 100, 255, 0.1) 0%, rgba(220, 180, 255, 0.1) 100%);
+  border: 2px solid rgba(200, 140, 255, 0.5);
+}
+
+.sound-tile[data-sound="heartbeat"] {
+  background: linear-gradient(135deg, rgba(255, 100, 100, 0.1) 0%, rgba(255, 150, 150, 0.1) 100%);
+  border: 2px solid rgba(255, 120, 120, 0.5);
+}
+
+.sound-tile[data-sound="brown-noise"] {
+  background: linear-gradient(135deg, rgba(148, 255, 176, 0.1) 0%, rgba(110, 255, 255, 0.1) 50%, rgba(158, 113, 255, 0.1) 100%);
+  border: 2px solid rgba(148, 255, 176, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.sound-tile[data-sound="brown-noise"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(148, 255, 176, 0.15), transparent 20%),
+    radial-gradient(circle at 70% 60%, rgba(110, 255, 255, 0.15), transparent 25%),
+    radial-gradient(circle at 40% 80%, rgba(158, 113, 255, 0.15), transparent 20%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sound-tile[data-sound="brown-noise"]::before {
+  background: linear-gradient(90deg, var(--plush-pink), var(--plush-blue), var(--plush-green));
+}
+
+.sound-tile[data-sound="brown-noise"].playing {
+  background: rgba(110, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(110, 255, 255, 0.3);
+  border: 2px solid var(--primary-color);
+}
+
+.sound-tile[data-sound="pink-noise"] {
+  background: linear-gradient(135deg, rgba(255, 100, 190, 0.1) 0%, rgba(255, 160, 210, 0.1) 100%);
+  border: 2px solid rgba(255, 130, 200, 0.5);
+}
+
+.sound-tile[data-sound="white-noise"] {
+  background: linear-gradient(135deg, rgba(255, 100, 190, 0.1) 0%, rgba(255, 160, 210, 0.1) 100%);
+  border: 2px solid rgba(255, 130, 200, 0.5);
+}
+
+.sound-tile[data-sound="rain"] {
+  background: linear-gradient(135deg, rgba(70, 130, 180, 0.1) 0%, rgba(120, 160, 200, 0.1) 100%);
+  border: 2px solid rgba(100, 140, 190, 0.5);
+}
+
+.sound-tile[data-sound="combo"] {
+  background: linear-gradient(135deg, rgba(148, 255, 176, 0.1) 0%, rgba(110, 255, 255, 0.1) 50%, rgba(158, 113, 255, 0.1) 100%);
+  border: 2px solid rgba(148, 255, 176, 0.5);
+}
+
+/* Add color-specific badges for each sound */
+.sound-tile::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  z-index: 1;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.sound-tile[data-sound="ocean"]::before {
+  background: linear-gradient(90deg, #00a8ff, #00d2ff);
+}
+
+.sound-tile[data-sound="forest"]::before {
+  background: linear-gradient(90deg, #00a050, #64c864);
+}
+
+.sound-tile[data-sound="snow"]::before {
+  background: linear-gradient(90deg, #c8dcff, #e6f0ff);
+}
+
+.sound-tile[data-sound="lullaby"]::before {
+  background: linear-gradient(90deg, #b464ff, #dcb4ff);
+}
+
+.sound-tile[data-sound="heartbeat"]::before {
+  background: linear-gradient(90deg, #ff6464, #ff9696);
+}
+
+.sound-tile[data-sound="pink-noise"]::before {
+  background: linear-gradient(90deg, #ff64be, #ffa0d2);
+}
+
+.sound-tile[data-sound="white-noise"]::before {
+  background: linear-gradient(90deg, #ff64be, #ffa0d2);
+}
+
+.sound-tile[data-sound="rain"]::before {
+  background: linear-gradient(90deg, #4682b4, #78a0c8);
+}
+
+.sound-tile[data-sound="combo"]::before {
+  background: linear-gradient(90deg, var(--plush-pink), var(--plush-blue), var(--plush-green));
+}
+
+.sound-tile.playing {
+  background: rgba(110, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(110, 255, 255, 0.3);
+  border: 2px solid var(--primary-color);
+  animation: none;
+}
+
+.sound-tile[data-sound="ocean"].playing {
+  background: rgba(0, 180, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.3);
+  border: 2px solid #00b4ff;
+}
+
+.sound-tile[data-sound="forest"].playing {
+  background: rgba(80, 180, 80, 0.15);
+  box-shadow: 0 0 20px rgba(80, 180, 80, 0.3);
+  border: 2px solid #50b450;
+}
+
+.sound-tile[data-sound="snow"].playing {
+  background: rgba(210, 230, 255, 0.15);
+  box-shadow: 0 0 20px rgba(210, 230, 255, 0.3);
+  border: 2px solid #d2e6ff;
+}
+
+.sound-tile[data-sound="lullaby"].playing {
+  background: rgba(200, 140, 255, 0.15);
+  box-shadow: 0 0 20px rgba(200, 140, 255, 0.3);
+  border: 2px solid #c88cff;
+}
+
+.sound-tile[data-sound="heartbeat"].playing {
+  background: rgba(255, 120, 120, 0.15);
+  box-shadow: 0 0 20px rgba(255, 120, 120, 0.3);
+  border: 2px solid #ff7878;
+}
+
+.sound-tile[data-sound="pink-noise"].playing {
+  background: rgba(255, 130, 200, 0.15);
+  box-shadow: 0 0 20px rgba(255, 130, 200, 0.3);
+  border: 2px solid #ff82c8;
+}
+
+.sound-tile[data-sound="white-noise"].playing {
+  background: rgba(255, 130, 200, 0.15);
+  box-shadow: 0 0 20px rgba(255, 130, 200, 0.3);
+  border: 2px solid #ff82c8;
+}
+
+.sound-tile[data-sound="rain"].playing {
+  background: rgba(100, 140, 190, 0.15);
+  box-shadow: 0 0 20px rgba(100, 140, 190, 0.3);
+  border: 2px solid #648cbe;
+}
+
+.sound-tile.playing .sound-icon {
+  animation: none;
+}
+
+/* Add badges to each sound similar to the experimental badge on combo */
+.sound-tile .badge {
+  position: absolute;
+  top: 35px;
+  right: -25px;
+  font-size: 0.6rem;
+  padding: 2px 25px;
+  font-family: 'Audiowide', cursive;
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+  z-index: 2;
+  color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sound-tile[data-sound="ocean"] .badge {
+  background: linear-gradient(135deg, #00a8ff 0%, #00d2ff 100%);
+}
+
+.sound-tile[data-sound="forest"] .badge {
+  background: linear-gradient(135deg, #00a050 0%, #64c864 100%);
+}
+
+.sound-tile[data-sound="snow"] .badge {
+  background: linear-gradient(135deg, #c8dcff 0%, #e6f0ff 100%);
+  color: #333;
+}
+
+.sound-tile[data-sound="lullaby"] .badge {
+  background: linear-gradient(135deg, #b464ff 0%, #dcb4ff 100%);
+}
+
+.sound-tile[data-sound="heartbeat"] .badge {
+  background: linear-gradient(135deg, #ff6464 0%, #ff9696 100%);
+}
+
+.sound-tile[data-sound="pink-noise"] .badge {
+  background: linear-gradient(135deg, #ff64be 0%, #ffa0d2 100%);
+}
+
+.sound-tile[data-sound="white-noise"] .badge {
+  background: linear-gradient(135deg, #dcdcdc 0%, #fafafa 100%);
+  color: #333;
+}
+
+.sound-tile[data-sound="rain"] .badge {
+  background: linear-gradient(135deg, #4682b4 0%, #78a0c8 100%);
+}
+
+.combo-badge {
+  position: absolute;
+  top: 35px;
+  right: -25px;
+  background: linear-gradient(135deg, #ff6ec7 0%, #ff6ec7 100%);
+  color: white;
+  font-size: 0.6rem;
+  padding: 2px 25px;
+  font-family: 'Audiowide', cursive;
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
+  z-index: 2;
+}
+
+.sound-tile:hover .badge, .sound-tile:hover .combo-badge {
+  animation: pulse-glow 1s infinite alternate;
+}
+
+.sound-tile.playing .badge {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #a5fdfd 100%);
+  color: #2a2a6a;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.sound-tile.playing .combo-badge {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #a5fdfd 100%);
+  color: #2a2a6a;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Play indicator styles */
+.play-indicator {
+  position: absolute;
+  bottom: 20px;
+  right: 15px;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  filter: grayscale(1);
+  z-index: 3;
+}
+
+.sound-tile.playing .play-indicator {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.sound-tile:not(.playing) .play-indicator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*background-color: rgba(0, 0, 0, 0.4);*/
+  z-index: -1;
+  border-radius: 50%;
+}
+
+/* Hide play buttons since we're using the entire tile as the clickable area */
+.play-btn {
+  display: none;
+}
+
+.sound-tile:hover .play-indicator {
+  opacity: 1;
+}
+
+/* Controls Section */
+.card {
+  border-radius: var(--border-radius);
+  border: 1px solid var(--tile-border);
+  background: rgba(40, 40, 100, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  color: var(--text-color);
+}
+
+.card-body {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(30deg, rgba(110, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(110, 255, 255, 0.05) 50%, rgba(110, 255, 255, 0.05) 75%, transparent 75%, transparent);
+  background-size: 10px 10px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.card-title {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  font-family: 'Audiowide', cursive;
+  text-shadow: var(--primary-glow);
+  position: relative;
+  display: inline-block;
+}
+
+.card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 30%;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+/* Volume Slider */
+.form-label {
+  font-family: 'Audiowide', cursive;
+  font-size: 0.9rem;
+  color: var(--plush-blue);
+  margin-bottom: 0.75rem;
+}
+
+.form-range {
+  height: 6px;
+  border-radius: 10px;
+  background: var(--control-chrome);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.form-range::-webkit-slider-thumb {
+  background: var(--primary-color);
+  border: 2px solid white;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.form-range::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+.form-range::-moz-range-thumb {
+  background: var(--primary-color);
+  border: 2px solid white;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Timer Buttons */
+.timer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.75rem;
+}
+
+.timer-buttons h5 {
+  font-family: 'Audiowide', cursive;
+  font-size: 0.9rem;
+  color: var(--plush-blue);
+}
+
+.timer-btn {
+  background: var(--control-chrome);
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.2rem;
+  transition: all 0.3s ease;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.1),
+    inset 0 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+.timer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.2),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.1),
+    inset 0 2px 5px rgba(255, 255, 255, 0.8);
+}
+
+.timer-btn.active {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #a5fdfd 100%);
+  color: #2a2a6a;
+  box-shadow: 0 0 10px var(--primary-color), inset 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#timer-display {
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  text-shadow: var(--primary-glow);
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 0.4rem 1rem;
+  display: inline-block;
+  font-family: 'Audiowide', cursive;
+}
+
+/* Combo Settings */
+.combo-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  background: rgba(30, 30, 80, 0.4);
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid var(--tile-border);
+}
+
+.form-check-label {
+  color: var(--text-color);
+  font-size: 0.9rem;
+  padding-left: 5px;
+}
+
+.form-check-input {
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: var(--control-chrome);
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 5px rgba(110, 255, 255, 0.3);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: white;
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+#apply-combo {
+  background: linear-gradient(135deg, var(--accent-color) 0%, #c4a2ff 100%);
+  border: none;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(158, 113, 255, 0.4);
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#apply-combo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(158, 113, 255, 0.6);
+}
+
+/* Footer styles */
+footer {
+  margin-top: 3rem;
+  position: relative;
+}
+
+footer::before {
+  content: "⦿⦿⦿";
+  display: block;
+  margin-bottom: 10px;
+  letter-spacing: 15px;
+  color: var(--primary-color);
+  text-shadow: var(--primary-glow);
+  font-size: 0.8rem;
+}
+
+.text-muted {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#app-version {
+  font-family: 'Audiowide', cursive;
+  color: var(--primary-color);
+  text-shadow: var(--primary-glow);
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    margin-top: 1rem;
+  }
+  
+  .sound-tile {
+    padding: 1rem 0.5rem;
+    min-height: 200px;
+  }
+  
+  .sound-icon {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .sound-icon span {
+    font-size: 3rem !important;
+  }
+  
+  .sound-tile h3 {
+    font-size: 0.85rem;
+  }
+  
+  .play-btn {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .tech-label {
+    font-size: 0.75rem;
+  }
+  
+  .tech-detail {
+    font-size: 0.8rem;
+  }
+  
+  /* Reduce number of floating elements on mobile */
+  .teddy:nth-child(even), .cloud:nth-child(odd) {
+    display: none;
+  }
+  
+  /* Hide some pre-defined elements on mobile to avoid clutter */
+  #float-3, #float-4 {
+    display: none;
+  }
+  
+  /* Make remaining elements more visible */
+  #float-1, #float-2, #float-5 {
+    opacity: 0.18;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem;
+    border-radius: 20px;
+  }
+  
+  .combo-options {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+/* Special glowing button for combo mode */
+#apply-combo {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#apply-combo::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    transparent, 
+    transparent, 
+    transparent, 
+    var(--accent-color)
+  );
+  animation: rotate 4s linear infinite;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* Add a digital display for timer */
+#timer-display.active {
+  background: rgba(0, 20, 40, 0.6);
+  font-family: 'Audiowide', cursive;
+  letter-spacing: 2px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 0 0 10px var(--primary-glow);
+}
+
+/* LED indicators for header */
+header::before, header::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  top: 10px;
+  animation: rgb-flicker 3s infinite alternate-reverse;
+}
+
+header::before {
+  left: 10px;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+header::after {
+  right: 10px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 0 8px var(--secondary-color);
+  animation-delay: 1s;
+}
+
+/* Cyber Badge and Status elements */
+.cyber-badge {
+  position: absolute;
+  top: -15px;
+  right: 10px;
+  background: var(--chrome);
+  padding: 2px 12px;
+  border-radius: 15px;
+  font-family: 'Audiowide', cursive;
+  font-size: 0.7rem;
+  color: #2a2a6a;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 -2px 5px rgba(0, 0, 0, 0.1),
+    inset 0 2px 5px rgba(255, 255, 255, 0.8);
+  transform: rotate(3deg);
+  z-index: 10;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.system-status {
+  margin: 15px auto 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 5px 15px;
+  border-radius: 15px;
+  border: 1px solid var(--primary-color);
+}
+
+.status-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+  animation: pulse-glow 1.5s infinite alternate;
+}
+
+.status-text {
+  font-family: 'Audiowide', cursive;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--primary-color);
+}
+
+/* Tech labels and details */
+.tech-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-family: 'Audiowide', cursive;
+  font-size: 0.8rem;
+  color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.25);
+  padding: 5px 8px;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  letter-spacing: 1px;
+  text-shadow: var(--primary-glow);
+  text-align: center;
+  z-index: 1;
+}
+
+.tech-detail {
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  opacity: 0.9;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+/* Tech panel header */
+.tech-panel-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.panel-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 8px var(--primary-color);
+  margin: 0 12px;
+  animation: pulse-glow 2s infinite alternate;
+}
+
+.control-module {
+  background: rgba(20, 20, 50, 0.4);
+  padding: 15px;
+  border-radius: 15px;
+  border: 1px solid var(--tile-border);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.control-module::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+}
+
+.module-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.calibration-values {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Audiowide', cursive;
+  font-size: 0.65rem;
+  color: var(--plush-blue);
+  margin-top: -5px;
+  margin-bottom: 5px;
+}
+
+.combo-subtitle {
+  color: var(--secondary-color);
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Footer elements */
+.circuit-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  margin: 0 auto 15px;
+  width: 80%;
+  position: relative;
+}
+
+.circuit-line::before, .circuit-line::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  top: -4px;
+  box-shadow: 0 0 8px var(--primary-color);
+}
+
+.circuit-line::before {
+  left: 20%;
+}
+
+.circuit-line::after {
+  right: 20%;
+}
+
+.tech-catchphrase {
+  font-style: italic;
+  color: var(--plush-pink);
+  font-size: 0.9rem;
+}
+
+.cert-badges {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.cert-badge {
+  background: var(--chrome);
+  color: #333;
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-family: 'Audiowide', cursive;
+  letter-spacing: 0.5px;
+  box-shadow: 
+    0 2px 5px rgba(0, 0, 0, 0.2),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Dreamscape background */
+#dreamscape-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  pointer-events: none;
+  background: radial-gradient(circle at 70% 20%, rgba(110, 255, 255, 0.1), transparent 30%),
+              radial-gradient(circle at 30% 70%, rgba(255, 110, 199, 0.1), transparent 25%),
+              radial-gradient(circle at 90% 90%, rgba(158, 113, 255, 0.1), transparent 35%);
+}
+
+/* Add floating teddy bear cloud elements */
+#dreamscape-bg::before {
+  content: "☁️";
+  position: absolute;
+  font-size: 5rem;
+  opacity: 0.2;
+  top: 15%;
+  left: 10%;
+  filter: hue-rotate(150deg);
+  animation: float 20s ease-in-out infinite;
+}
+
+#dreamscape-bg::after {
+  content: "🧸";
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.15;
+  bottom: 20%;
+  right: 15%;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+/* Add animation for UI elements */
+.btn, .sound-tile, .card {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* System status pulse animation */
+@keyframes status-pulse {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+.status-indicator {
+  animation: status-pulse 2s infinite;
+}
+
+/* Add a hover effect for sound tiles that makes them pop */
+.sound-tile:hover .tech-label {
+  color: white;
+  text-shadow: 0 0 10px var(--primary-color);
+}
+
+.sound-tile:hover .sound-icon {
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Combo mode special styles */
+.combo-tile {
+  background: linear-gradient(135deg, rgba(148, 255, 176, 0.1) 0%, rgba(110, 255, 255, 0.1) 50%, rgba(158, 113, 255, 0.1) 100%);
+  border: 2px solid rgba(148, 255, 176, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.combo-tile::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(148, 255, 176, 0.15), transparent 20%),
+    radial-gradient(circle at 70% 60%, rgba(110, 255, 255, 0.15), transparent 25%),
+    radial-gradient(circle at 40% 80%, rgba(158, 113, 255, 0.15), transparent 20%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.combo-icon {
+  background: linear-gradient(145deg, #e0f5e9 0%, #f0fff5 47%, #d8efe0 100%);
+}
+
+.combo-badge {
+  position: absolute;
+  top: 35px;
+  right: -25px;
+  background: linear-gradient(135deg, #ff6ec7 0%, #ff6ec7 100%);
+  color: white;
+  font-size: 0.6rem;
+  padding: 2px 25px;
+  font-family: 'Audiowide', cursive;
+  letter-spacing: 1px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 10px rgba(255, 110, 199, 0.5);
+  z-index: 2;
+}
+
+.combo-btn {
+  background: linear-gradient(145deg, #e0f5e9 0%, #f0fff5 47%, #d8efe0 100%);
+}
+
+.combo-tile:hover .combo-badge {
+  animation: pulse-glow 1s infinite alternate;
+}
+
+.combo-tile.playing .combo-badge {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #a5fdfd 100%);
+  color: #2a2a6a;
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Teddy bears and clouds with random positions */
+.teddy, .cloud {
+  position: absolute;
+  z-index: -5;
+  will-change: transform;
+  transform: translateZ(0); /* Hardware acceleration */
+}
+
+.teddy {
+  filter: saturate(0.8) brightness(1.2);
+}
+
+.cloud {
+  filter: saturate(0.6) brightness(1.3);
+}
+
+@media (max-width: 768px) {
+  /* Reduce number of floating elements on mobile */
+  .teddy:nth-child(even), .cloud:nth-child(odd) {
+    display: none;
+  }
+}
+
+.sound-icon {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sound-icon span {
+  font-size: 4rem !important;
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+}
+
+/* Floating Elements */
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.float-item {
+  position: absolute;
+  opacity: 0.15;
+  filter: saturate(0.8) brightness(1.2);
+  z-index: -5;
+}
+
+#float-1 {
+  font-size: 3rem;
+  top: 15%;
+  left: 10%;
+  animation: float 20s ease-in-out infinite;
+}
+
+#float-2 {
+  font-size: 4rem;
+  bottom: 20%;
+  right: 15%;
+  animation: float 25s ease-in-out 2s infinite reverse;
+}
+
+#float-3 {
+  font-size: 2.5rem;
+  top: 70%;
+  left: 20%;
+  animation: float 18s ease-in-out 1s infinite;
+}
+
+#float-4 {
+  font-size: 2rem;
+  top: 30%;
+  right: 25%;
+  animation: float 15s ease-in-out 3s infinite reverse;
+}
+
+#float-5 {
+  font-size: 3.5rem;
+  bottom: 15%;
+  left: 35%;
+  animation: float 22s ease-in-out 4s infinite;
+} 
