@@ -15,7 +15,35 @@ document.addEventListener("DOMContentLoaded", function() {
   // Initialize the app
   const soundMachine = new SoundMachine();
   soundMachine.init();
+  
+  // Enable iOS background audio
+  enableIOSBackgroundAudio();
 });
+
+/**
+ * Enable background audio playback for iOS devices
+ */
+function enableIOSBackgroundAudio() {
+  // Set up audio session for background playback on iOS
+  if (navigator.mediaSession) {
+    navigator.mediaSession.setActionHandler('play', () => {});
+    navigator.mediaSession.setActionHandler('pause', () => {});
+  }
+  
+  // Create a silent audio element that keeps the audio context alive
+  const silentAudio = document.createElement('audio');
+  silentAudio.setAttribute('loop', 'loop');
+  silentAudio.setAttribute('playsinline', 'playsinline');
+  silentAudio.setAttribute('webkit-playsinline', 'webkit-playsinline');
+  silentAudio.src = 'data:audio/mp3;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU2LjM2LjEwMAAAAAAAAAAAAAAA//UEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAAEAAABIADAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDV1dXV1dXV1dXV1dXV1dXV1dXV1dXV1dXV6urq6urq6urq6urq6urq6urq6urq6urq6v////////////////////////////////8AAAAATGF2YzU2LjQxAAAAAAAAAAAAAAAAJAAAAAAAAAAAASDs90hvAAAAAAAAAAAAAAAAAAAA//MUZAAAAAGkAAAAAAAAA0gAAAAATEFN//MUZAMAAAGkAAAAAAAAA0gAAAAARTMu//MUZAYAAAGkAAAAAAAAA0gAAAAAOTku//MUZAkAAAGkAAAAAAAAA0gAAAAANVVV';
+  silentAudio.volume = 0.0001;
+  document.body.appendChild(silentAudio);
+  
+  // Start playing the silent audio when a user interacts with the page
+  document.addEventListener('touchstart', function() {
+    silentAudio.play().catch(e => console.log('Silent audio play failed:', e));
+  }, { once: true });
+}
 
 class SoundMachine {
   constructor() {
@@ -56,7 +84,14 @@ class SoundMachine {
   init() {
     // Create audio context (with fallback for older browsers)
     const AudioContext = window.AudioContext || window.webkitAudioContext;
-    this.audioContext = new AudioContext();
+    
+    // Set options for iOS background playback
+    const audioContextOptions = {
+      latencyHint: 'playback',
+      sampleRate: 44100
+    };
+    
+    this.audioContext = new AudioContext(audioContextOptions);
     
     // Create master gain node
     this.masterGain = this.audioContext.createGain();
@@ -167,7 +202,6 @@ class SoundMachine {
         comboSettings.classList.remove('d-none');
       }
     } else {
-      // Play the selected sound
       this.playSound(soundType);
       this.currentSound = soundType;
     }
@@ -180,7 +214,11 @@ class SoundMachine {
   playSound(soundType) {
     // Resume the audio context (needed because of autoplay policies)
     if (this.audioContext.state === 'suspended') {
-      this.audioContext.resume();
+      this.audioContext.resume().then(() => {
+        console.log('AudioContext resumed successfully');
+      }).catch(error => {
+        console.error('Failed to resume AudioContext:', error);
+      });
     }
     
     switch(soundType) {
