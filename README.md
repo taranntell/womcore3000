@@ -2,7 +2,7 @@
 
 **The Industrial-Grade Sleep for Soft Skulls**
 
-![wombcore](./assets/wombcorescreenshot.jpg)
+![wombcore](./assets/wombcorescreenshot.png)
 
 A web-based sound machine to help calm, relax, or entertain your baby. Wombcore 3000 generates various soothing sounds using the Web Audio API, with no external sound files needed.
 
