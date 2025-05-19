@@ -1,13 +1,15 @@
-# Mausilda - Baby Sound Machine
+# Wombcore 3000 
 
-A web-based sound machine to help calm, relax, or entertain your baby. Mausilda generates various soothing sounds using the Web Audio API, with no external sound files needed.
+**The Industrial-Grade Sleep for Soft Skulls**
+
+A web-based sound machine to help calm, relax, or entertain your baby. Wombcore 3000 generates various soothing sounds using the Web Audio API, with no external sound files needed.
 
 ## Features
 
-- **Multiple Sound Types**: Choose from white noise, pink noise, brown noise, heartbeat, ocean waves, rain, snow, forest ambience, and a gentle lullaby.
-- **Combo Mode**: Mix and match different sounds to create a custom soundscape for your baby.
+- **Multiple Sound Types**: Choose from white noise, brown noise, heartbeat, ocean waves, rain, snow, forest ambience, and a gentle lullaby.
 - **Sleep Timer**: Automatically stop sounds after 15, 30, or 60 minutes.
 - **Volume Control**: Easily adjust the volume to find the perfect level.
+- **Background Audio Support**: Lock your mobile device and keep listening.
 - **Responsive Design**: Works on mobile devices, tablets, and desktops.
 - **No Audio Files**: All sounds are procedurally generated using the Web Audio API.
 
@@ -15,16 +17,16 @@ A web-based sound machine to help calm, relax, or entertain your baby. Mausilda 
 
 ### Live Demo
 
-Visit the live version on GitHub Pages: [Mausilda Baby Sound Machine](https://your-username.github.io/mausilda/)
+Visit the live version on GitHub Pages: [Wombcore 3000](https://taranntell.github.io/wombcore3000/)
 
 ### Local Installation
 
-To run Mausilda locally:
+To run Wombcore 3000 locally:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/mausilda.git
-   cd mausilda
+   git clone https://github.com/taranntell/wombcore3000.git
+   cd wombcore3000
    ```
 
 2. Open `index.html` in your browser.
@@ -36,7 +38,6 @@ That's it! No build process or dependencies required.
 1. **Play a Sound**: Click on any sound tile to start playing that sound.
 2. **Adjust Volume**: Use the volume slider in the controls section.
 3. **Set a Timer**: Choose a timer duration if you want the sounds to stop automatically.
-4. **Create a Combo**: Click on "Combo Mode" to mix multiple sounds together.
 
 ## Technical Details
 
@@ -50,22 +51,20 @@ That's it! No build process or dependencies required.
 Works on all modern browsers that support the Web Audio API:
 - Chrome (recommended)
 - Firefox
-- Safari
 - Edge
+- Safari - Playing sounds in background is not working since JS is getting stopped once mobile device is locked
 
 ## Version History
 
 ### v0.1.0 – [2023-05-17]
 - Initial version of the app
-- Added white noise, pink noise, heartbeat, ocean waves, and lullaby sounds
+- Added sounds 
 - Integrated Web Audio API with volume control
 - Responsive mobile layout with Bootstrap
 - Basic timer functionality (15/30/60 min)
-- Combo mode for mixing sounds
 - Version shown in footer
 
 ### v0.2.0 – [2023-05-20]
-- Added four new sound types: brown noise, rain, snow, and forest ambience
 - Enhanced layout for better display of multiple sound options
 - Improved combo mode options to include all available sounds
 - Fixed UI issues with play/pause button states
@@ -76,4 +75,4 @@ MIT
 
 ## Credits
 
-Created with ❤️ for babies everywhere. 
+Drop the bass... and the baby (into REM sleep).

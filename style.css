@@ -120,7 +120,7 @@ body::before {
 }
 
 .lead {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   color: var(--plush-pink);
   position: relative;
   display: inline-block;
